@@ -15,11 +15,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.message.text
     try:
         summary = wikipedia.summary(query, sentences=5)
-        await update.message.reply_text(f"📝 Wikipedia summary:\n\n{summary}")
+        await update.message.reply_text(f"Wikipedia summary:\n\n{summary}")
 
-        # Подключаем ИИ для анализа причин события
+        
         causes = await analyze_event(summary)
-        await update.message.reply_text(f"📚 Causes analysis:\n\n{causes}")
+        await update.message.reply_text(f"Causes analysis:\n\n{causes}")
 
     except wikipedia.exceptions.DisambiguationError as e:
         await update.message.reply_text(f"Too many results. Try to be more specific.\nOptions:\n{e.options[:5]}")
